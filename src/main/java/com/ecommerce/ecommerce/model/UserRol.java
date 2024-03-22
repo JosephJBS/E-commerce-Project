@@ -2,8 +2,8 @@ package com.ecommerce.ecommerce.model;
 
 public enum UserRol {
 
-    ADMIN ("Administrador","ADM"),
-    TRABAJADOR("Trabajador","TRB");
+    ADM("Administrador","ADM"),
+    TRB("Trabajador","TRB");
 
     private String descripcion;
     private String abreviatura;
