@@ -1,0 +1,1 @@
+Alter table user add column estado boolean default true;
