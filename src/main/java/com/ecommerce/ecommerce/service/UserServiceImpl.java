@@ -1,9 +1,8 @@
 package com.ecommerce.ecommerce.service;
 
-import com.ecommerce.ecommerce.model.constans.RespuestasEnum;
-import com.ecommerce.ecommerce.model.dto.UserData;
-import com.ecommerce.ecommerce.model.dto.UserInfo;
-import com.ecommerce.ecommerce.model.dto.UserUpdate;
+import com.ecommerce.ecommerce.model.dto.user.UserData;
+import com.ecommerce.ecommerce.model.dto.user.UserInfo;
+import com.ecommerce.ecommerce.model.dto.user.UserUpdate;
 import com.ecommerce.ecommerce.model.entity.User;
 import com.ecommerce.ecommerce.model.repository.UserRepository;
 

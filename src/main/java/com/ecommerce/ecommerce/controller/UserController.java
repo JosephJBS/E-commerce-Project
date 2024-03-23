@@ -1,7 +1,7 @@
 package com.ecommerce.ecommerce.controller;
 
-import com.ecommerce.ecommerce.model.dto.UserData;
-import com.ecommerce.ecommerce.model.dto.UserUpdate;
+import com.ecommerce.ecommerce.model.dto.user.UserData;
+import com.ecommerce.ecommerce.model.dto.user.UserUpdate;
 import com.ecommerce.ecommerce.model.response.GenericResponse;
 import com.ecommerce.ecommerce.service.UserService;
 import jakarta.validation.Valid;

@@ -1,4 +1,4 @@
-package com.ecommerce.ecommerce.model.dto;
+package com.ecommerce.ecommerce.model.dto.user;
 
 import com.ecommerce.ecommerce.model.UserRol;
 
