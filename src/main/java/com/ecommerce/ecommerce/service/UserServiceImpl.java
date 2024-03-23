@@ -1,10 +1,13 @@
 package com.ecommerce.ecommerce.service;
 
+import com.ecommerce.ecommerce.model.constans.RespuestasEnum;
 import com.ecommerce.ecommerce.model.dto.UserData;
 import com.ecommerce.ecommerce.model.dto.UserInfo;
 import com.ecommerce.ecommerce.model.dto.UserUpdate;
 import com.ecommerce.ecommerce.model.entity.User;
 import com.ecommerce.ecommerce.model.repository.UserRepository;
+
+import com.ecommerce.ecommerce.model.response.GenericResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +25,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserInfo createUser(UserData userData) {
-        User auxUser =
-                User.builder()
+        User auxUser = User
+                .builder()
                 .userRol(userData.userRol())
                 .username(userData.username())
                 .password(userData.password())
+                .estado(true)
                 .build();
 
         userRepository.save(auxUser);
@@ -37,13 +41,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfo getUser (Long id) {
-        User auxUser = userRepository.getReferenceById(id);
+    public GenericResponse getUser (String id) {
+
+        User auxUser = userRepository.getReferenceById(Long.valueOf(id));
+
+        if ( auxUser == null ) return GenericResponse.usuarioNoEncontrado();
+
         UserInfo auxInfoUser = infoUser(auxUser);
 
         log.info("UserService - Get User : {}",auxInfoUser);
 
-        return auxInfoUser;
+        return GenericResponse.ok(auxInfoUser);
     }
 
     @Override
@@ -65,11 +73,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String deactivateUser(Long id) {
-        if (userRepository.getReferenceById(id) == null) return  "Usuario con id : " + id + " no existe";
+    public String deactivateUser(String id) {
+        User auxUser = userRepository.getReferenceById(Long.valueOf(id));
 
+        if (auxUser == null) return  "Usuario con id : " + id + " no existe";
 
-        User auxUser = userRepository.getReferenceById(id);
         auxUser.setEstado(false);
         userRepository.save(auxUser);
 
@@ -80,10 +88,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String activateUser(Long id) {
-        if (userRepository.getReferenceById(id) == null) return  "Usuario con id : " + id + " no existe";
+    public String activateUser(String id) {
+        User auxUser = userRepository.getReferenceById(Long.valueOf(id));
+        if (auxUser == null) return  "Usuario con id : " + id + " no existe";
 
-        User auxUser = userRepository.getReferenceById(id);
         auxUser.setEstado(true);
         userRepository.save(auxUser);
 

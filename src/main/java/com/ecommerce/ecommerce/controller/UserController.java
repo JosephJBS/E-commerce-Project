@@ -2,8 +2,10 @@ package com.ecommerce.ecommerce.controller;
 
 import com.ecommerce.ecommerce.model.dto.UserData;
 import com.ecommerce.ecommerce.model.dto.UserUpdate;
+import com.ecommerce.ecommerce.model.response.GenericResponse;
 import com.ecommerce.ecommerce.service.UserService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +34,13 @@ public class UserController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<?> getUser(@RequestParam long id){
+    public ResponseEntity<GenericResponse> getUser(@RequestParam @Pattern(regexp = "\\d+") String id){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(id));
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(GenericResponse.errorDatosInvalidos("El ID debe ser un número válido"));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\": \"" + e.getMessage() + "\"}"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(GenericResponse.errorDatosInvalidos(e.getMessage()));
         }
     }
 
@@ -50,7 +54,7 @@ public class UserController {
     }
 
     @PutMapping("/delete")
-    public ResponseEntity<?> deactivateUSer (@RequestParam long id){
+    public ResponseEntity<?> deactivateUSer (@RequestParam @Pattern(regexp = "\\d+") String id){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(userService.deactivateUser(id));
         }catch (Exception e){
@@ -59,7 +63,7 @@ public class UserController {
     }
 
     @PutMapping("/activate")
-    public ResponseEntity<?> activateUSer (@RequestParam long id){
+    public ResponseEntity<?> activateUSer (@RequestParam @Pattern(regexp = "\\d+") String id){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(userService.activateUser(id));
         }catch (Exception e){

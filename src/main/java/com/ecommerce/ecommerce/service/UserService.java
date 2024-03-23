@@ -4,6 +4,7 @@ import com.ecommerce.ecommerce.model.dto.UserData;
 import com.ecommerce.ecommerce.model.dto.UserInfo;
 import com.ecommerce.ecommerce.model.dto.UserUpdate;
 import com.ecommerce.ecommerce.model.entity.User;
+import com.ecommerce.ecommerce.model.response.GenericResponse;
 
 import java.util.List;
 
@@ -11,13 +12,13 @@ public interface UserService {
 
     UserInfo createUser(UserData userData);
 
-    UserInfo getUser(Long id);
+    GenericResponse getUser(String id);
 
     UserInfo updateUser(UserUpdate userUpdate);
 
-    String deactivateUser(Long id);
+    String deactivateUser(String id);
 
-    String activateUser(Long id);
+    String activateUser(String id);
 
     List<UserInfo> listActiveUser();
 
