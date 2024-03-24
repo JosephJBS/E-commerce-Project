@@ -18,12 +18,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/mensaje")
-    public String mostrarMensaje(){
-        return "Hola";
-    }
-
-
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody @Valid UserData userData){
         try{

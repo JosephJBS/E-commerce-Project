@@ -26,18 +26,23 @@ public class GenericResponse {
         return HttpStatus.valueOf(codigo);
     }
 
-    public static GenericResponse ok(Object object){
-        return buildResponse(RespuestasEnum.OK,RespuestasEnum.OK.mensaje(),object);
+    public static GenericResponse ok(Object object) {
+        return buildResponse(RespuestasEnum.OK, RespuestasEnum.OK.mensaje(), object);
     }
 
-    public static GenericResponse usuarioNoEncontrado(){
+    public static GenericResponse errorDatosInvalidos(Object errors) {
+        return GenericResponse.buildResponseError(RespuestasEnum.DATOS_INVALIDOS, errors);
+    }
+
+    //USUARIO
+    public static GenericResponse usuarioNoEncontrado() {
         return buildResponse(RespuestasEnum.USUARIO_NO_ENCONTRADO);
     }
 
-    public static GenericResponse errorDatosInvalidos(Object errores){
-        return GenericResponse.buildResponseError(RespuestasEnum.DATOS_INVALIDOS,errores);
+    //PRODUCTO
+    public static GenericResponse productoNoEncontrado() {
+        return buildResponse(RespuestasEnum.PRODUCTO_NO_ENCONTRADO);
     }
-
 
     private static GenericResponse buildResponse(RespuestasEnum respuestaEnum) {
         return buildResponse(respuestaEnum, respuestaEnum.mensaje());
@@ -63,9 +68,6 @@ public class GenericResponse {
                 .data(null).codigo(respuestaEnum.codigo()).mensaje(respuestaEnum.mensaje()).errores(errores)
                 .build();
     }
-
-
-
 
 
 }

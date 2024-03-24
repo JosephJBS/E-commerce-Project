@@ -1,6 +1,6 @@
 package com.ecommerce.ecommerce.model.entity;
 
-import com.ecommerce.ecommerce.model.UserRol;
+import com.ecommerce.ecommerce.model.constans.UserRol;
 import jakarta.persistence.*;
 import lombok.*;
 

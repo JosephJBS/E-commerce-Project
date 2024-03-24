@@ -1,0 +1,1 @@
+Alter table producto add column estado boolean default true;

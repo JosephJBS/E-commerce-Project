@@ -4,6 +4,7 @@ public enum RespuestasEnum  {
 
     OK(200, "Proceso exitoso."),
     USUARIO_NO_ENCONTRADO(404, "No se encontró el usuario solicitado."),
+    PRODUCTO_NO_ENCONTRADO(405, "No se encontró el producto solicitado."),
     DATOS_INVALIDOS(401, "Los datos proporcionados son inválidos.");
 
 

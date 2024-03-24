@@ -34,21 +34,21 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(auxUser);
 
-        log.info("UserService - Create User : {}",infoUser(auxUser));
+        log.info("UserService - Create User : {}", infoUser(auxUser));
 
         return infoUser(auxUser);
     }
 
     @Override
-    public GenericResponse getUser (String id) {
+    public GenericResponse getUser(String id) {
 
         User auxUser = userRepository.getReferenceById(Long.valueOf(id));
 
-        if ( auxUser == null ) return GenericResponse.usuarioNoEncontrado();
+        if (auxUser == null) return GenericResponse.usuarioNoEncontrado();
 
         UserInfo auxInfoUser = infoUser(auxUser);
 
-        log.info("UserService - Get User : {}",auxInfoUser);
+        log.info("UserService - Get User : {}", auxInfoUser);
 
         return GenericResponse.ok(auxInfoUser);
     }
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
         userRepository.save(auxUser);
 
-        log.info("UserService - Update User : {}",infoUser(auxUser));
+        log.info("UserService - Update User : {}", infoUser(auxUser));
 
         return infoUser(auxUser);
 
@@ -75,28 +75,28 @@ public class UserServiceImpl implements UserService {
     public String deactivateUser(String id) {
         User auxUser = userRepository.getReferenceById(Long.valueOf(id));
 
-        if (auxUser == null) return  "Usuario con id : " + id + " no existe";
+        if (auxUser == null) return "Usuario con id : " + id + " no existe";
 
         auxUser.setEstado(false);
         userRepository.save(auxUser);
 
-        log.info("UserService - Deactivate User whit id : {}",id);
+        log.info("UserService - Deactivate User whit id : {}", id);
 
-        return  "Usuario con id : " + id + " de ha desactivado";
+        return "Usuario con id : " + id + " de ha desactivado";
 
     }
 
     @Override
     public String activateUser(String id) {
         User auxUser = userRepository.getReferenceById(Long.valueOf(id));
-        if (auxUser == null) return  "Usuario con id : " + id + " no existe";
+        if (auxUser == null) return "Usuario con id : " + id + " no existe";
 
         auxUser.setEstado(true);
         userRepository.save(auxUser);
 
-        log.info("UserService - Activate User : {}",infoUser(auxUser));
+        log.info("UserService - Activate User : {}", infoUser(auxUser));
 
-        return  "Usuario con id : " + id + " de ha activado";
+        return "Usuario con id : " + id + " de ha activado";
     }
 
     @Override
@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
         return allUsers;
     }
 
-    public UserInfo infoUser (User user){
+    public UserInfo infoUser(User user) {
         UserInfo auxInfoUser =
                 new UserInfo(
                         user.getUserRol(),
