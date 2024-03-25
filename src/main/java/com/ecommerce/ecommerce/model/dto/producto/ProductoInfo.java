@@ -7,6 +7,7 @@ public record ProductoInfo(
         String nombre,
         String descripcion,
         BigDecimal precio,
-        int cantidad
+        int cantidad,
+        boolean estado
 ) {
 }

@@ -88,25 +88,26 @@ public class ProductoServiceImpl implements ProductoService {
     public GenericResponse deactivateProduct(String id) {
         Producto producto = productoRepository.getReferenceById(Long.valueOf(id));
 
+        if (producto.isEstado() == false) return GenericResponse.productoInactivo(infoProduct(producto));
         if (producto == null) return GenericResponse.productoNoEncontrado();
 
         producto.setEstado(false);
         productoRepository.save(producto);
 
-
-        return GenericResponse.ok(infoProduct(producto));
+        return GenericResponse.ok(infoProduct(producto), "Exito - Desactivación ejcutada");
     }
 
     @Override
     public GenericResponse activateProduct(String id) {
         Producto producto = productoRepository.getReferenceById(Long.valueOf(id));
 
+        if (producto.isEstado() == true) return GenericResponse.productoActivo(infoProduct(producto));
         if (producto == null) return GenericResponse.productoNoEncontrado();
 
         producto.setEstado(true);
         productoRepository.save(producto);
 
-        return GenericResponse.ok(infoProduct(producto));
+        return GenericResponse.ok(infoProduct(producto), "Exito - Activación ejcutada");
     }
 
 
@@ -117,7 +118,8 @@ public class ProductoServiceImpl implements ProductoService {
                         producto.getNombre(),
                         producto.getDescripcion(),
                         producto.getPrecio(),
-                        producto.getCantidad()
+                        producto.getCantidad(),
+                        producto.isEstado()
                 );
         return infoProd;
     }

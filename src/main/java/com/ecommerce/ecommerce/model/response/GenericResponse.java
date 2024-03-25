@@ -30,6 +30,10 @@ public class GenericResponse {
         return buildResponse(RespuestasEnum.OK, RespuestasEnum.OK.mensaje(), object);
     }
 
+    public static GenericResponse ok(Object object, String mensaje) {
+        return buildResponse(RespuestasEnum.OK, mensaje, object);
+    }
+
     public static GenericResponse errorDatosInvalidos(Object errors) {
         return GenericResponse.buildResponseError(RespuestasEnum.DATOS_INVALIDOS, errors);
     }
@@ -44,6 +48,21 @@ public class GenericResponse {
         return buildResponse(RespuestasEnum.PRODUCTO_NO_ENCONTRADO);
     }
 
+    public static GenericResponse productoActivo(Object object) {
+        return buildResponse(
+                RespuestasEnum.PRODUCTO_YA_ACTIVO,
+                RespuestasEnum.PRODUCTO_YA_ACTIVO.mensaje(),
+                object);
+    }
+
+    public static GenericResponse productoInactivo(Object object) {
+        return buildResponse(
+                RespuestasEnum.PRODUCTO_YA_INACTIVO,
+                RespuestasEnum.PRODUCTO_YA_INACTIVO.mensaje(),
+                object);
+    }
+
+    //BUILD
     private static GenericResponse buildResponse(RespuestasEnum respuestaEnum) {
         return buildResponse(respuestaEnum, respuestaEnum.mensaje());
     }

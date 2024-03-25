@@ -27,6 +27,8 @@ public class ProductoController {
         }
     }
 
+    //FIXME: DEFINIR SOLO VALORES POSITIVOS EN EL REGEX ID @Pattern(regexp = "^[1-9]\\d*$")
+
     @GetMapping("/get")
     public ResponseEntity<GenericResponse> getProduct(@RequestParam @Pattern(regexp = "\\d+") String id){
         try{
