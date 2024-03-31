@@ -9,6 +9,7 @@ import com.ecommerce.ecommerce.model.repository.UserRepository;
 import com.ecommerce.ecommerce.model.response.GenericResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public UserInfo createUser(UserData userData) {
@@ -28,7 +31,7 @@ public class UserServiceImpl implements UserService {
                 .builder()
                 .userRol(userData.userRol())
                 .username(userData.username())
-                .password(userData.password())
+                .password(passwordEncoder.encode(userData.password()))
                 .estado(true)
                 .build();
 
@@ -61,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
         auxUser.setUserRol(userUpdate.userRol());
         auxUser.setUsername(userUpdate.username());
-        auxUser.setPassword(userUpdate.password());
+        auxUser.setPassword(passwordEncoder.encode(userUpdate.password()));
 
         userRepository.save(auxUser);
 

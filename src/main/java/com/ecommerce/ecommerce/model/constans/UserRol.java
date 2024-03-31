@@ -3,7 +3,8 @@ package com.ecommerce.ecommerce.model.constans;
 public enum UserRol {
 
     ADM("Administrador", "ADM"),
-    TRB("Trabajador", "TRB");
+    TRB("Trabajador", "TRB"),
+    CLNT("Cliente", "CLNT");
 
     private String descripcion;
     private String abreviatura;
